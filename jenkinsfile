@@ -6,8 +6,6 @@ pipeline {
     }
     environment {
         SCANNER_HOME=tool 'sonar-scanner'
-        PATH = "${env.PATH}:/var/lib/jenkins/.docker/cli-plugins"
-
     }
     stages {
         stage ("clean workspace") {
@@ -70,10 +68,10 @@ pipeline {
             steps {
                 script{
                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
-                       sh 'docker scout version'
-                       sh 'docker scout quickview madocker7/zomato:latest'
-                       sh 'docker scout cves madocker7/zomato:latest'
-                       sh 'docker scout recommendations madocker7/zomato:latest'
+                       sh 'docker-scout version'
+                       sh 'docker-scout quickview madocker7/zomato:latest'
+                       sh 'docker-scout cves madocker7/zomato:latest'
+                       sh 'docker-scout recommendations madocker7/zomato:latest'
                    }
                 }
             }
